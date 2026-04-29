@@ -10,7 +10,7 @@ export default function SearchBar({
 }) {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => {
     if (!query.trim()) { onResults(null); return; }
@@ -23,7 +23,7 @@ export default function SearchBar({
       } finally {
         setLoading(false);
       }
-    }, 400);   // debounce 400ms — instant feel without spamming backend
+    }, 400);
     return () => clearTimeout(timerRef.current);
   }, [query]);
 
