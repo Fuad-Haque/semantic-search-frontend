@@ -10,7 +10,7 @@ export default function SearchBar({
 }) {
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout>();
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     if (!query.trim()) { onResults(null); return; }
